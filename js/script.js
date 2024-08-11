@@ -135,4 +135,89 @@ bgOptions.forEach(li => {
 });
 
 randomBg();
+
 /////////////////////////////////////////////////////////////////////////////////////
+
+// select skills section elements
+
+let skillsSection = document.querySelector('.skills');
+
+window.addEventListener('scroll', () => {
+    // section offset top :
+    let sectionOffsetTop = skillsSection.offsetTop;
+    
+    let sectionOuterHeight = skillsSection.offsetHeight;
+    // => height of the section
+    
+    let windowHeight = window.innerHeight;
+
+    // window scroll top :
+    let windowScrollTop = window.pageYOffset;
+
+    /* 
+        console.log(windowScrollTop);
+        console.log(window.scrollY);
+        console.log('#'.repeat(10));
+     */
+
+    if (windowScrollTop > sectionOffsetTop + sectionOuterHeight - windowHeight) {
+        // get all skills elements
+        let skills = document.querySelectorAll('.skill .progress span');
+        skills.forEach(skill => skill.style.width = skill.dataset.progress);
+    }
+    
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+// create pop up box when click on images in gallery 
+
+let galleryImages = document.querySelectorAll('.gallery .images img');
+
+galleryImages.forEach(img => {
+    img.addEventListener('click', (e) => {
+
+        // create overlay (makes bg darker when pop up appears)
+        let overlay = document.createElement('div');
+        overlay.className = 'overlay';
+        document.body.appendChild(overlay);
+
+        // create pop-up box
+        let popup = document.createElement('div');
+        popup.className = 'pop-up';
+
+        // create the image inside the popup
+        let popupImage = document.createElement('img');
+        popupImage.src = e.target.src;
+
+        popup.appendChild(popupImage);
+        
+
+        // create button to close popup
+        let closePopupButton = document.createElement('div');
+        closePopupButton.className = 'close-popup';
+        closePopupButton.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
+
+        popup.appendChild(closePopupButton);
+
+        closePopupButton.addEventListener('click', () => {
+            popup.remove();
+            overlay.remove();
+        });
+
+        // create the description
+        if (img.alt !== "" ) {
+            let description = document.createElement('div');
+            description.className = 'popup-description';
+            description.innerText = img.alt;
+            popup.appendChild(description);
+        }
+
+        document.body.appendChild(popup);
+    });
+});
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// displaying timeline on scroll
+
