@@ -221,3 +221,22 @@ galleryImages.forEach(img => {
 
 // displaying timeline on scroll
 
+let contents = document.querySelectorAll('.career .content');
+
+contents.forEach(content => {
+
+    window.addEventListener('scroll', () => {
+        let contentOffsetTop = content.offsetTop;
+
+        let contentOffsetHeight = content.offsetHeight;
+        
+        let windowHeight = window.innerHeight;
+
+        let scroll = window.pageYOffset;
+
+        if (scroll > contentOffsetHeight + contentOffsetTop - windowHeight) {
+            content.style.opacity = 1;
+        }
+    });
+
+})
