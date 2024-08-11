@@ -4,14 +4,50 @@ let landingPage = document.querySelector('.landing');
 // array of images to render :
 let imgsArray = ['01.png', '02.png', '03.png', '04.png'];
 
-setInterval(() => {
+// randomize background
+let random = localStorage.getItem('bg_random');
 
-    // get random number :
-    let randomNumber = Math.floor(Math.random() * imgsArray.length);
+// control interval to clear it
+let bgInterval;
 
-    // change url every 2s : 
-    landingPage.style.backgroundImage = 'url("images/'+ imgsArray[randomNumber] + '")';
-}, 2000);
+// check if there is value in localStorage
+let isThereValue = localStorage.getItem('bg_random');
+
+// if value not empty
+if (isThereValue !== null) {
+    if (isThereValue === 'true') {
+        random = true;
+    } else {
+        random = false;
+    }
+    document.querySelectorAll('.bg li').forEach(li => {
+        li.classList.remove('active');
+
+        if (isThereValue === 'true') {
+            document.querySelector('.yes').classList.add('active');
+        } else {
+            document.querySelector('.no').classList.add('active');
+        }
+    });
+}
+
+// setInterval made in function 
+function randomBg () {
+    if (random === true) {
+
+            bgInterval = setInterval(() => {
+
+            // get random number :
+            let randomNumber = Math.floor(Math.random() * imgsArray.length);
+        
+            // change url every 2s : 
+            landingPage.style.backgroundImage = 'url("images/'+ imgsArray[randomNumber] + '")';
+        }, 2000);
+    } else {
+        clearInterval(bgInterval);
+    }
+}
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -85,7 +121,18 @@ bgOptions.forEach(li => {
 
         // add active class to selected item
         e.target.classList.add('active');
+
+        if (e.target.dataset.bg === 'yes') {
+            localStorage.setItem('bg_random', true);
+            random = true;
+            randomBg();
+        } else {
+            localStorage.setItem('bg_random', false);
+            random = false;
+            randomBg();
+        }
     });
 });
 
+randomBg();
 /////////////////////////////////////////////////////////////////////////////////////
