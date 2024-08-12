@@ -16,19 +16,19 @@
 
     <!-- Starting navigation bullets -->
     <div class="bullets">
-        <div class="bullet">
+        <div class="bullet" data-section="about">
             <span>About me</span>
         </div>
-        <div class="bullet">
+        <div class="bullet" data-section="skills">
             <span>My skills</span>
         </div>
-        <div class="bullet">
+        <div class="bullet" data-section="gallery">
             <span>My gallery</span>
         </div>
-        <div class="bullet">
+        <div class="bullet" data-section="career">
             <span>Timeline</span>
         </div>
-        <div class="bullet">
+        <div class="bullet" data-section="contact">
             <span>Get in touch</span>
         </div>
     </div>
@@ -42,9 +42,9 @@
             <div class="option colors">
                 <h4>Colors</h4>
                 <div class="colors-list">
-                    <li data-color="#ff0000" class="active">Red</li>
-                    <li data-color="rgb(4, 46, 4)">Green</li>
-                    <li data-color="rgb(13, 13, 52)">Blue</li>
+                    <li data-color="#ff0000" class="active"></li>
+                    <li data-color="#371777"></li>
+                    <li data-color="#00aeef"></li>
                 </div>
             </div>
 
@@ -52,7 +52,15 @@
                 <h4>Background</h4>
                 <div class="options-list">
                     <li id="allow-animation" class="active yes" data-bg="yes">Allow animation</li>
-                    <li id="stop-animation" data-bg="no" class="no">Stop animation</li>
+                    <li id="stop-animation" class="no" data-bg="no">Stop animation</li>
+                </div>
+            </div>
+
+            <div class="option nav">
+                <h4>Quick navigation</h4>
+                <div class="options-list">
+                    <li id="allow-nav" class="active yes" data-nav="yes">Allow quick nav</li>
+                    <li id="stop-nav" class="no" data-nav="no">Hide quick nav</li>
                 </div>
             </div>
         </div>
@@ -76,7 +84,7 @@
                 <h1>I am <span>Rayen</span></h1>
                 <p>Discover the world of a 2nd year software development student, and see the amazing things i have achieved so far.</p>
                 <div class="buttons">
-                    <button id="discover-more">Discover More</button>
+                    <button id="discover-more" data-section="about">Discover More</button>
                     <button id="contact">Contact Me</button>
                 </div>
             </div>
@@ -171,6 +179,7 @@
         </div>
     </div>
     <!-- End career -->
+    
     <script src="js/script.js"></script>
 </body>
 </html>

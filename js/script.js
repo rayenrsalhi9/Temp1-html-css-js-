@@ -239,4 +239,66 @@ contents.forEach(content => {
         }
     });
 
-})
+});
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+// select all bullets 
+const bullets = document.querySelectorAll('.bullets .bullet');
+
+bullets.forEach(bullet => {
+    bullet.addEventListener('click', (e) => {
+        if (bullet.dataset.section !== null) {
+            document.querySelector(`.${e.target.dataset.section}`).scrollIntoView({
+            behavior : 'smooth'
+        });
+        }
+    });
+});
+
+document.querySelector('#discover-more').addEventListener('click', (e) => {
+    document.querySelector(`.${e.target.dataset.section}`).scrollIntoView({
+        behavior : 'smooth'
+    });
+});
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// show & hide bullets
+
+const bulletsBox = document.querySelector('.bullets');
+const bulletsLi = document.querySelectorAll('.option.nav li');
+
+function changeVisibility () {
+    let allowNav = localStorage.getItem('allow_navigation');
+    if (allowNav !== null) {
+
+        bulletsBox.style.display = allowNav === 'yes' ? 'flex' : 'none'
+
+        bulletsLi.forEach(el => {
+            el.classList.remove('active');
+
+            if (el.dataset.nav === localStorage.getItem('allow_navigation')) {
+                el.classList.add('active');
+            }
+        })
+    }
+}
+
+bulletsLi.forEach(bltLi  => {
+    bltLi.addEventListener('click', (e) => {
+        e.target.parentElement.querySelectorAll('.active').forEach(el => {
+            el.classList.remove('active');
+        });
+
+        e.target.classList.add('active');
+
+        localStorage.setItem('allow_navigation', e.target.dataset.nav);
+        changeVisibility();
+
+    });
+});
+
+changeVisibility();
+
+
