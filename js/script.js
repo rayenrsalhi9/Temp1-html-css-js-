@@ -29,6 +29,9 @@ if (isThereValue !== null) {
             document.querySelector('.no').classList.add('active');
         }
     });
+} else {
+    random = true;
+    randomBg();
 }
 
 // setInterval made in function 
@@ -42,7 +45,7 @@ function randomBg () {
         
             // change url every 2s : 
             landingPage.style.backgroundImage = 'url("images/'+ imgsArray[randomNumber] + '")';
-        }, 2000);
+        }, 10000);
     } else {
         clearInterval(bgInterval);
     }
@@ -301,4 +304,15 @@ bulletsLi.forEach(bltLi  => {
 
 changeVisibility();
 
+///////////////////////////////////////////////////////////////////////////////////
+
+// reset options button configuration
+
+let resetButton = document.querySelector('#reset');
+resetButton.addEventListener('click', () => {
+    localStorage.clear();
+    window.location.reload();
+});
+
+/////////////////////////////////////////////////////////////////////
 
