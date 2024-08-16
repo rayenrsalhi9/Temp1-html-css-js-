@@ -316,3 +316,41 @@ resetButton.addEventListener('click', () => {
 
 /////////////////////////////////////////////////////////////////////
 
+// submit message :
+let submitButton = document.querySelector('.submit');
+let messageArea = document.querySelector('#message');
+let inputFields = document.querySelectorAll('.field');
+
+submitButton.addEventListener('click', (e) => {
+    //console.log(messageArea.value);
+});
+
+/////////////////////////////////////////////////////////////////////
+
+// set dynamic date in the footer :
+
+let spanDate = document.querySelector('footer p span');
+spanDate.innerHTML = new Date().getFullYear();
+
+//////////////////////////////////////////////////////////////////////
+
+// scroll to top :
+
+let scrollTop = document.querySelector('.scroll-to-top');
+scrollTop.addEventListener('click', () => {
+    window.scrollTo({
+        top :0,
+        behavior : 'smooth'
+    });
+});
+
+///////////////////////////////////////////////////////////////////////////
+
+// social media links :
+let socialMediaLinks = document.querySelectorAll('.social-media ul li');
+
+socialMediaLinks.forEach(el => {
+    el.addEventListener('click', () => {
+        window.open(`${el.dataset.link}`,'_blank');
+    });
+})
